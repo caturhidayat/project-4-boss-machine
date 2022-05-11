@@ -13,8 +13,12 @@ apiRouter.get('/minions', (req, res, next) => {
 // Get Minion by id
 apiRouter.get('/minions/:minionid', (req, res, next) => {
     const minionid = req.params.minionid
-    const minions = db.getFromDatabaseById('minions', minionid)
-    res.send(minions)
+    if(minionid === NaN || !minionid) {
+        res.status(404).send()
+    } else {
+        const minions = db.getFromDatabaseById('minions', minionid)
+        res.send(minions)
+    }
 })
 // Create Minion
 apiRouter.post('/minions', (req, res, next) => {
@@ -24,6 +28,15 @@ apiRouter.post('/minions', (req, res, next) => {
 // Edit Minion
 apiRouter.put('/minions/:minionid', (req, res, next) => {
     const minionid = req.body
+    if(minionid === NaN) {
+        res.status(404).send()
+    }
     const editMinions = db.updateInstanceInDatabase('minions', minionid)
     res.send(editMinions)
+})
+// Delete Minion
+apiRouter.delete('/minions/:minionid', (req, res, next) => {
+    const minionid = req.params.minionid
+    const deleteMinions = db.deleteFromDatabasebyId('minions', minionid)
+    res.send(deleteMinions)
 })
