@@ -23,5 +23,7 @@ const apiRouter = require('./server/api');
 // This conditional is here for testing purposes:
 if (!module.parent) { 
   // Add your code to start the server listening at PORT below:
-
+  app.listen(PORT, () => {
+    console.log(`App running on http://localhost:${PORT}`);
+  })
 }
