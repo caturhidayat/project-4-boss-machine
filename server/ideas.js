@@ -4,7 +4,7 @@ const {
   getFromDatabaseById,
   addToDatabase,
   updateInstanceInDatabase,
-  deleteAllFromDatabase,
+  deleteFromDatabasebyId,
 } = require("./db");
 
 module.exports = ideasRouter;
